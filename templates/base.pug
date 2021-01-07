@@ -1,0 +1,15 @@
+{% load static %}
+!!! 5
+html
+    head
+        title Pug htmx
+        script(src='{% static "htmx.min.js.gz" %}')
+    body(hx-boost="true")
+        p begin
+        include book_list
+        #b-div
+            include book
+        p end
+        a(href='/book/4/', hx-target="#b-div") Get book
+  </div>
+

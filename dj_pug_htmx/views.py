@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from storage import books
 
 
 def index(request):
-    # return HttpResponse('abc')
+    book = {'id': 1, 'title': books[0]['title']}
     return render(
         request, 'base.pug',
         {
-            'book_id': 1,
+            'book': book,
+            'book_list': books,
         }
     )
 
@@ -22,7 +24,10 @@ def get_book_list(request):
 
 
 def get_book(request, book_id):
-    template = 'base.pug'
-    if 'HX-Request' in request.headers:
-        template = 'book.pug'
-    return render(request, template, {'book_id': book_id})
+    template = 'book.pug'
+    book = {'id': book_id, 'title': books[book_id - 1]['title']}
+    context = {'book': book}
+    if 'HX-Request' not in request.headers:
+        template = 'base.pug'
+        context['book_list'] = books
+    return render(request, template, context)

@@ -1,7 +1,5 @@
+p List
 ul
+  for book in book_list
     li
-        a(href='/book/1/', hx-target="#b-div") Book 1
-    li
-        a(href='/book/2/', hx-target="#b-div") Book 2
-    li
-        a(href='/book/3/', hx-target="#b-div") Book 3
+      a(href='/book/{{ forloop.counter }}/', hx-target="#b-div") {{ book.title }}

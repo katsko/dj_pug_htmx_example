@@ -1,15 +1,13 @@
 {% load static %}
 !!! 5
 html
-    head
-        title Pug htmx
-        script(src='{% static "htmx.min.js.gz" %}')
-    body(hx-boost="true")
-        p begin
-        include book_list
-        #b-div
-            include book
-        p end
-        a(href='/book/4/', hx-target="#b-div") Get book
-  </div>
-
+  head
+    title Pug htmx
+    // Favicon from pixabay.com with free license
+    link(rel='icon', type='image/png', href='{% static "favicon.png" %}') 
+    // Lib from unpkg.com/browse/htmx.org@1.1.0/dist/
+    script(src='{% static "htmx.min.js.gz" %}')
+  body(hx-boost="true")
+    include book_list
+    #b-div
+      include book

@@ -1,8 +1,7 @@
-from keyword import kwlist
-from random import choice
+from django.utils.lorem_ipsum import words
 
 
 books = [
-    {'title': ' '.join([choice(kwlist) for _ in range(3)])}
+    {'title': words(2, common=False)}
     for _ in range(5)
 ]

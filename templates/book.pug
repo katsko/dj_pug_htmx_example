@@ -1,3 +1,6 @@
 p Book content
 p Book id: {{ book.id }}
 p Book title: {{ book.title }}
+
+if set_title
+  title(id="html-title" hx-swap-oob="true") {{ book.title }}

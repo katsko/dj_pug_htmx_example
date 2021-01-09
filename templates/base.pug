@@ -2,12 +2,13 @@
 !!! 5
 html
   head
-    title Pug htmx
+    title(id='html-title') {{ html_title|default:'Pug htmx' }}
     // Favicon from pixabay.com with free license
     link(rel='icon', type='image/png', href='{% static "favicon.png" %}') 
     // Lib from unpkg.com/browse/htmx.org@1.1.0/dist/
     script(src='{% static "htmx.min.js.gz" %}')
-  body(hx-boost="true")
+  body
+    a(href='/') Go to main
     include book_list
     #b-div
       include book

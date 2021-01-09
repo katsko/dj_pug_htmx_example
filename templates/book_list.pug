@@ -1,5 +1,5 @@
 p List
-ul
+ul(hx-boost="true")
   for book in book_list
     li
       a(href='/book/{{ forloop.counter }}/', hx-target="#b-div") {{ book.title }}

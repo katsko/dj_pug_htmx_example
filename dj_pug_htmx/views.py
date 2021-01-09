@@ -26,8 +26,9 @@ def get_book_list(request):
 def get_book(request, book_id):
     template = 'book.pug'
     book = {'id': book_id, 'title': books[book_id - 1]['title']}
-    context = {'book': book}
+    context = {'book': book, 'set_title': True}
     if 'HX-Request' not in request.headers:
         template = 'base.pug'
         context['book_list'] = books
+        context['set_title'] = False
     return render(request, template, context)

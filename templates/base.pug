@@ -10,5 +10,13 @@ html
   body
     a(href='/') Go to main
     include book_list
+    form(hx-post='/book/add/')
+      {% csrf_token %}
+      fieldset
+        legend Add book
+        label Title
+          input(type='text' name='title')
+        input(type='submit', value='Add')
+
     #b-div
       include book

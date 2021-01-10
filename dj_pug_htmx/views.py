@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from storage import books
 
 
 def index(request):
-    book = {'id': 1, 'title': books[0]['title']}
+    book = books[0]
     return render(
         request, 'base.pug',
         {
@@ -32,3 +32,12 @@ def get_book(request, book_id):
         context['book_list'] = books
         context['set_title'] = False
     return render(request, template, context)
+
+
+def add_book(request):
+    title = request.POST['title']
+    book = {'id': len(books) + 1, 'title': title}
+    books.append(book)
+    if 'HX-Request' not in request.headers:
+        return redirect('index')
+    return render(request, 'add_book.pug', {'book': book})

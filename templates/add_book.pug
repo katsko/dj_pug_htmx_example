@@ -1,0 +1,11 @@
+form(hx-post='/book/add/')
+  {% csrf_token %}
+  fieldset
+    legend Add book
+    label Title
+      input(type='text' name='title')
+    input(type='submit', value='Add')
+
+if book
+  ul#book_list(hx-swap-oob='beforeend')
+    include book_list_item

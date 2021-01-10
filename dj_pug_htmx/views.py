@@ -4,23 +4,13 @@ from storage import books
 
 
 def index(request):
-    book = books[0]
-    return render(
-        request, 'base.pug',
-        {
-            'book': book,
-            'book_list': books,
-        }
-    )
+    return render(request, 'base.pug', {'book': books[0], 'book_list': books})
 
 
 def get_book_list(request):
-    return render(
-        request, 'book_list.pug',
-        {
-            'base_template': 'base.pug',
-        }
-    )
+    title = request.GET.get('title')
+    book_list = books.filter(title)
+    return render(request, 'book_list.pug', {'book_list': book_list})
 
 
 def get_book(request, book_id):

@@ -9,6 +9,17 @@ html
     script(src='{% static "htmx.min.js.gz" %}')
   body
     a(href='/') Go to main
+    p List
+    fieldset
+      legend Search
+      label Title
+        input(
+          type='text'
+          name='title'
+          hx-get='/book/list/'
+          hx-trigger='keyup changed delay:500ms'
+          hx-target='#book_list'
+        )
     include book_list
     form(hx-post='/book/add/')
       {% csrf_token %}
